@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Compras</title>
+
+    <style>
+        
+        table,td{
+            margin: 0.5em;
+            border: 0.1em solid;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        
+        
+    </style>
+
+</head>
+<body>
+    <h1>Lista de Compras</h1>
+    
+    <form name="compras">
+        Item: <input type="text" name="nome">
+        Quantidade: <input type="number" name="quant">
+        <input type="submit" value="Adicionar">
+    </form>
+    
+    <table>
+        <thead>
+            <tr><td colspan="2">Tabela de Produtos</td></tr>
+            <tr>
+                <td>Item</td>
+                <td>Quantidade</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <button id="limpar">Limpar</button>
+
+    <script>
+        document.forms.compras.addEventListener("submit",processaEnvio)
+        var tabela = document.getElementsByTagName("tbody")[0]
+        var limpar = document.getElementById("limpar");
+        function processaEnvio(e){
+            e.preventDefault();
+            
+            var nome = document.forms.compras.nome.value
+            var quantidade = Number(document.forms.compras.quant.value)
+            if(nome!="" && quantidade!=""){
+                
+                
+                var novoTr = document.createElement("tr")
+                var novoTdNome = document.createElement("td")
+                var novoTdQuantidade = document.createElement("td")
+                
+                
+                novoTdNome.textContent = nome
+                novoTdQuantidade.textContent = quantidade
+                
+                
+                novoTr.appendChild(novoTdNome)
+                novoTr.appendChild(novoTdQuantidade)
+                tabela.appendChild(novoTr)
+                document.forms.compras.reset();
+                document.forms.compras.nome.focus();
+            }
+        }
+        limpar.addEventListener("click",function(){
+            tabela.innerHTML="";
+        })
+    
+    </script>
+</body>
+</html>
