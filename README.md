@@ -1,5 +1,4 @@
-# list2.1
-dcc121 list 2.1
+
 TRABALHO
 EXCURSAO
 PILHA
